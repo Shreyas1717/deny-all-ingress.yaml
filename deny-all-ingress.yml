@@ -1,0 +1,11 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "restrict all ingress to frontend"
+metadata:
+  name: "no-ingress"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: frontend 
+  ingress:
+  - {}
