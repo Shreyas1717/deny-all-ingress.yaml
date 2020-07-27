@@ -1,0 +1,22 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "restrict all local ingress to frontend"
+metadata:
+  name: "no-local-ingress-frontend"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: frontend
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+      ports:
+      - protocol: TCP
+        port: 8080
+  - fromEndpoints:
+    - matchLabels:
+        app: loadgenerator
+    - matchLabels:
+        app: productcatalogservice
+    
