@@ -1,0 +1,23 @@
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "restrict all local egress from checkoutservice pod"
+metadata:
+  name: "no-local-egress-checkoutservice"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: checkoutservice
+  egress:
+  - {}
+---
+apiVersion: "cilium.io/v2"
+kind: CiliumNetworkPolicy
+description: "restrict all local egress from currencyservice"
+metadata:
+  name: "no-local-egress-currencyservice"
+spec:
+  endpointSelector:
+    matchLabels:
+      app: currencyservice
+  egress:
+  - {}
